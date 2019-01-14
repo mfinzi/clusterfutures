@@ -4,3 +4,4 @@ build/
 *.sh
 dist/
 cfut/__pycache__/
+*.egg-info/
