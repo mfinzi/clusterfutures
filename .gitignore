@@ -1,0 +1,6 @@
+*.bak
+build/
+*.pickle
+*.sh
+dist/
+cfut/__pycache__/
