@@ -17,7 +17,7 @@ setup(name='clusterfutures',
 
       packages=['cfut'],
       install_requires=[
-          'cloud',
+          'dill',
           'futures',
       ],
 

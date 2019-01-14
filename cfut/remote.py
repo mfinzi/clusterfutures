@@ -1,5 +1,6 @@
 """Tools for executing remote commands."""
-from cloud import serialization
+# from cloud import serialization
+import dill
 import sys
 import os
 import traceback
@@ -17,14 +18,14 @@ def worker(workerid):
     try:
         with open(INFILE_FMT % workerid) as f:
             indata = f.read()
-        fun, args, kwargs = serialization.deserialize(indata)
+        fun, args, kwargs = dill.loads(indata)#serialization.deserialize(indata)
 
         result = True, fun(*args, **kwargs)
-        out = serialization.serialize(result, True)
+        out = dill.dumps(result)#serialization.serialize(result, True)
 
     except:
         result = False, format_remote_exc()
-        out = serialization.serialize(result, False)
+        out = dill.dumps(result)#serialization.serialize(result, False)
 
     destfile = OUTFILE_FMT % workerid
     tempfile = destfile + '.tmp'
